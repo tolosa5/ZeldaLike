@@ -1,0 +1,27 @@
+using Game.Inputs;
+using UnityEngine;
+
+namespace Game.Player
+{
+    public class PlayerController : MonoBehaviour
+    {
+        [SerializeField] private PlayerMovement playerMovement;
+        [SerializeField] private PlayerCombat playerCombat;
+        [SerializeField] private PlayerInteraction playerInteraction;
+
+        private void Start()
+        {
+            InputManager.instance.inputSystemActions.Player.Attack.performed += ctx => playerCombat.Attack();
+            InputManager.instance.inputSystemActions.Player.Interact.performed += ctx => playerInteraction.LookForInteraction();
+        }
+
+        private void Update()
+        {
+            if (playerCombat.entityAttack.isAttacking)
+                return;
+            
+            Vector2 movementInput = InputManager.instance.inputSystemActions.Player.Move.ReadValue<Vector2>();
+            playerMovement.Move(movementInput);
+        }
+    }
+}
