@@ -7,14 +7,11 @@ public class EntityAttack : MonoBehaviour
     [SerializeField] private float damage = 10f;
     [SerializeField] private float attackRadius = 1f;
     [SerializeField] private Transform attackSpot;
-    [SerializeField] private LayerMask isDamageable;
 
-    public bool isAttacking;
+    [HideInInspector] public bool isAttacking;
     
-    private Collider[] buffer = new Collider[10];
+    private Collider[] buffer = new Collider[15];
     private List<IDamageable> alreadyDamaged = new List<IDamageable>();
-    
-    
     
     //Animator call
     public void OpenAttackWindow()
@@ -27,7 +24,7 @@ public class EntityAttack : MonoBehaviour
     private IEnumerator Damaging()
     {
         Debug.Log("Performing hit");
-        int results = Physics.OverlapSphereNonAlloc(attackSpot.position, attackRadius, buffer, isDamageable);
+        int results = Physics.OverlapSphereNonAlloc(attackSpot.position, attackRadius, buffer);
         if (results <= 0)
             yield return null;
 

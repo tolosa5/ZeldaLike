@@ -25,3 +25,13 @@ public class DeactivateTooltipEvent : EventData
         
     }
 }
+
+public class ActivateLeverEvent : EventData
+{
+    public int id { get; private set; }
+
+    public ActivateLeverEvent(int id, float cooldown = 0) : base(cooldown)
+    {
+        this.id = id;
+    }
+}

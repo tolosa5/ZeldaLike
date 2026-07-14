@@ -17,7 +17,7 @@ namespace Game.Player
 
         private void Update()
         {
-            if (playerCombat.entityAttack.isAttacking)
+            if (playerCombat.Anim.GetCurrentAnimatorStateInfo(0).IsName("Player@Attack"))
                 return;
             
             Vector2 movementInput = InputManager.instance.inputSystemActions.Player.Move.ReadValue<Vector2>();
