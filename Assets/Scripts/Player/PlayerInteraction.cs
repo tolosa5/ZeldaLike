@@ -8,8 +8,8 @@ namespace Game.Player
         [SerializeField] private LayerMask interactableMask;
         [SerializeField] private float interactionSize;
         
-        ActivateTooltipEvent onActivateTooltipEvent;
-        DeactivateTooltipEvent onDeactivateTooltipEvent;
+        OnActivateTooltipEvent onOnActivateTooltipEvent;
+        OnDeactivateTooltipEvent onOnDeactivateTooltipEvent;
 
         private void Update()
         {
@@ -17,13 +17,13 @@ namespace Game.Player
 
             if (interactable != null && interactable.GetIsInteractable())
             {
-                onActivateTooltipEvent = new ActivateTooltipEvent(interactable.GetTooltipText());
-                EventBus.Raise(onActivateTooltipEvent);
+                onOnActivateTooltipEvent = new OnActivateTooltipEvent(interactable.GetTooltipText());
+                EventBus.Raise(onOnActivateTooltipEvent);
             }
             else
             {
-                onDeactivateTooltipEvent = new DeactivateTooltipEvent();
-                EventBus.Raise(onDeactivateTooltipEvent);
+                onOnDeactivateTooltipEvent = new OnDeactivateTooltipEvent();
+                EventBus.Raise(onOnDeactivateTooltipEvent);
             }
         }
 

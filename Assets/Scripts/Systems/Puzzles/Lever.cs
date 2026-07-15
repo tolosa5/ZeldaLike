@@ -4,7 +4,7 @@ using UnityEngine;
 public class Lever : BaseInteractable
 {
     [SerializeField] private int id;
-    private ActivateLeverEvent activateLeverEvent;
+    private OnActivateLeverEvent onActivateLeverEvent;
 
     private void Awake()
     {
@@ -13,7 +13,7 @@ public class Lever : BaseInteractable
 
     public override void Interact(Transform interactTransform)
     {
-        activateLeverEvent = new ActivateLeverEvent(id);
-        EventBus.Raise(activateLeverEvent);
+        onActivateLeverEvent = new OnActivateLeverEvent(id);
+        EventBus.Raise(onActivateLeverEvent);
     }
 }

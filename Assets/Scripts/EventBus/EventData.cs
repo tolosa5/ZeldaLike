@@ -8,30 +8,38 @@ public class EventData
     }
 }
 
-public class ActivateTooltipEvent : EventData
+public class OnActivateTooltipEvent : EventData
 {
     public string tooltip { get; private set; }
 
-    public ActivateTooltipEvent(string tooltip, float cooldown = 0) : base(cooldown)
+    public OnActivateTooltipEvent(string tooltip, float cooldown = 0) : base(cooldown)
     {
         this.tooltip = tooltip;
     }
 }
 
-public class DeactivateTooltipEvent : EventData
+public class OnDeactivateTooltipEvent : EventData
 {
-    public DeactivateTooltipEvent(float cooldown = 0) : base(cooldown)
+    public OnDeactivateTooltipEvent(float cooldown = 0) : base(cooldown)
     {
         
     }
 }
 
-public class ActivateLeverEvent : EventData
+public class OnActivateLeverEvent : EventData
 {
     public int id { get; private set; }
 
-    public ActivateLeverEvent(int id, float cooldown = 0) : base(cooldown)
+    public OnActivateLeverEvent(int id, float cooldown = 0) : base(cooldown)
     {
         this.id = id;
+    }
+}
+
+public class OnGetMapEvent : EventData
+{
+    public OnGetMapEvent(float cooldown = 0) : base(cooldown)
+    {
+        
     }
 }

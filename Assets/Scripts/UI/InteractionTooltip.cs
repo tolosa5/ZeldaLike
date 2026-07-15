@@ -9,11 +9,11 @@ public class InteractionTooltip : MonoBehaviour
 
     private void Awake()
     {
-        EventBus.Subscribe<ActivateTooltipEvent>(ShowTooltip);
-        EventBus.Subscribe<DeactivateTooltipEvent>(HideTooltip);
+        EventBus.Subscribe<OnActivateTooltipEvent>(ShowTooltip);
+        EventBus.Subscribe<OnDeactivateTooltipEvent>(HideTooltip);
     }
     
-    private void ShowTooltip(ActivateTooltipEvent data)
+    private void ShowTooltip(OnActivateTooltipEvent data)
     {
         if (tooltipWrapper.activeSelf)
             return;
@@ -22,7 +22,7 @@ public class InteractionTooltip : MonoBehaviour
         tooltipText.text = data.tooltip;
     }
 
-    private void HideTooltip(DeactivateTooltipEvent data)
+    private void HideTooltip(OnDeactivateTooltipEvent data)
     {
         if (!tooltipWrapper.activeSelf)
             return;

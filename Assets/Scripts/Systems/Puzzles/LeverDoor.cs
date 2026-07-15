@@ -6,10 +6,10 @@ public class LeverDoor : Door
     
     private void Start()
     {
-        EventBus.Subscribe<ActivateLeverEvent>(LeverOpen);
+        EventBus.Subscribe<OnActivateLeverEvent>(LeverOpen);
     }
     
-    private void LeverOpen(ActivateLeverEvent data)
+    private void LeverOpen(OnActivateLeverEvent data)
     {
         if (data.id != id)
             return;

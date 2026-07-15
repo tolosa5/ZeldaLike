@@ -5,7 +5,7 @@ public class Chest : BaseInteractable
 {
     private Animator anim;
     [SerializeField] private bool isLocked = false;
-    [SerializeField] private Loot chestLoot;
+    [SerializeField] private Drop chestLoot;
     private readonly int Open = Animator.StringToHash("Open");
 
     private void Awake()
@@ -20,10 +20,16 @@ public class Chest : BaseInteractable
 
     public override void Interact(Transform interactTransform)
     {
+        isInteractable = false;
         anim.SetTrigger(Open);
-        if (chestLoot != null)
+        if (chestLoot == null) 
+            return;
+        
+        if (chestLoot as UsableDrop)
         {
-            
+            UsableDrop drop = (UsableDrop)chestLoot;
+            drop.Use();
         }
+        interactTransform.gameObject.GetComponent<PlayerInventory>().AddItem(chestLoot);
     }
 }

@@ -9,7 +9,7 @@ public class PlayerInventory : MonoBehaviour
 
     private void Start()
     {
-        
+        EventBus.Subscribe<OnGetMapEvent>(GetMap);
     }
 
     public void SwitchInventoryState()
@@ -17,7 +17,7 @@ public class PlayerInventory : MonoBehaviour
         inventoryWrapper.SetActive(!inventoryWrapper.activeSelf);
     }
 
-    public void AddItem(Loot loot)
+    public void AddItem(Drop loot)
     {
         
     }
@@ -30,6 +30,11 @@ public class PlayerInventory : MonoBehaviour
     public void RemoveKey(Key key)
     {
         keys.Remove(key);
+    }
+
+    private void GetMap(OnGetMapEvent data)
+    {
+        
     }
     
     public List<Key> GetKeys() { return keys; }
