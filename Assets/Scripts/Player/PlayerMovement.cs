@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Game.Player
@@ -7,6 +8,8 @@ namespace Game.Player
         [Range(1, 5)]
         [SerializeField] private float rotationSpeed = 1f;
         [SerializeField] private float playerSpeed = 2f;
+        [Range(1, 5)] 
+        [SerializeField] private float pushForce = 2f;
         
         private CharacterController controller;
         private Transform mainCam;
@@ -20,7 +23,23 @@ namespace Game.Player
             controller = GetComponent<CharacterController>();
             mainCam = Camera.main.transform;
         }
-        
+
+        private void OnControllerColliderHit(ControllerColliderHit hit)
+        {
+            Rigidbody rb = hit.collider.attachedRigidbody;
+            if (rb == null || rb.isKinematic)
+                return;
+
+            if (hit.moveDirection.y > -0.3f)
+                return;
+            
+            Vector3 forceDirection = hit.gameObject.transform.position - transform.position;
+            forceDirection.y = 0;
+            forceDirection.Normalize();
+            
+            rb.AddForceAtPosition(forceDirection * pushForce, transform.position, ForceMode.Impulse);
+        }
+
         public void Move(Vector2 movementInput)
         {
             isPlayerGrounded = controller.isGrounded;

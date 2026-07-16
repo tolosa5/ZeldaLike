@@ -7,4 +7,5 @@ public class Drop : ScriptableObject
     [TextArea(5, 10)] 
     [SerializeField] private string description;
     [SerializeField] private Sprite sprite;
+    [SerializeField] private GameObject model;
 }

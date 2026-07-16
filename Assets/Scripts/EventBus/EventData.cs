@@ -43,3 +43,13 @@ public class OnGetMapEvent : EventData
         
     }
 }
+
+public class OnPressurePlatePressed : EventData
+{
+    public int id { get; private set; }
+
+    public OnPressurePlatePressed(int id, float cooldown = 0) : base(cooldown)
+    {
+        this.id = id;
+    }
+}

@@ -1,41 +1,52 @@
-using System;
 using System.Collections.Generic;
+using Game.Resources;
 using UnityEngine;
 
-public class PlayerInventory : MonoBehaviour
+namespace Game.Player
 {
-    private List<Key> keys = new();
-    [SerializeField] private GameObject inventoryWrapper;
-
-    private void Start()
+    public class PlayerInventory : MonoBehaviour
     {
-        EventBus.Subscribe<OnGetMapEvent>(GetMap);
-    }
+        private List<Key> keys = new();
+        private List<Drop> inventory = new();
+        private List<Money> moneyPouch = new();
+        [SerializeField] private GameObject inventoryWrapper;
 
-    public void SwitchInventoryState()
-    {
-        inventoryWrapper.SetActive(!inventoryWrapper.activeSelf);
-    }
+        private void Start()
+        {
+            EventBus.Subscribe<OnGetMapEvent>(GetMap);
+        }
 
-    public void AddItem(Drop loot)
-    {
-        
-    }
+        public void SwitchInventoryState()
+        {
+            inventoryWrapper.SetActive(!inventoryWrapper.activeSelf);
+        }
 
-    public void AddKey(Key key)
-    {
-        keys.Add(key);
-    }
+        public void AddItem(Drop loot)
+        {
+            inventory.Add(loot);
+        }
 
-    public void RemoveKey(Key key)
-    {
-        keys.Remove(key);
-    }
+        public void AddMoney(Money money)
+        {
+            Debug.Log("Adding money to pouch");
+            moneyPouch.Add(money);
+        }
 
-    private void GetMap(OnGetMapEvent data)
-    {
-        
-    }
+        public void AddKey(Key key)
+        {
+            keys.Add(key);
+        }
+
+        public void RemoveKey(Key key)
+        {
+            keys.Remove(key);
+        }
+
+        private void GetMap(OnGetMapEvent data)
+        {
+            
+        }
     
-    public List<Key> GetKeys() { return keys; }
+        public List<Key> GetKeys() { return keys; }
+    }
 }

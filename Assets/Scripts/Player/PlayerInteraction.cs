@@ -31,8 +31,6 @@ namespace Game.Player
         {
             Collider[] colls = Physics.OverlapSphere(interactTransform.position, 
                 interactionSize, interactableMask);
-            
-            Debug.Log(colls.Length);
 
             if (colls.Length <= 0) 
                 return null;

@@ -1,4 +1,5 @@
 using System;
+using Game.Player;
 using UnityEngine;
 
 public class Chest : BaseInteractable
@@ -22,7 +23,7 @@ public class Chest : BaseInteractable
     {
         isInteractable = false;
         anim.SetTrigger(Open);
-        if (chestLoot == null) 
+        if (chestLoot == null)
             return;
         
         if (chestLoot as UsableDrop)

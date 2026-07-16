@@ -1,3 +1,4 @@
+
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Map", menuName = "Scriptable Objects/UsableDrop/Map")]
