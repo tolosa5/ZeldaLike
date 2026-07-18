@@ -5,6 +5,6 @@ public class PusheableRock : MonoBehaviour
 {
     public void LockPosition()
     {
-        gameObject.isStatic = true;
+        transform.parent.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
     }
 }

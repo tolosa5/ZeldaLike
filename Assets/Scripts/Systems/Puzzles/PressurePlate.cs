@@ -12,6 +12,7 @@ public class PressurePlate : MonoBehaviour
         if (other.TryGetComponent(out PusheableRock rock))
         {
             rock.LockPosition();
+            Debug.Log(rock.gameObject.name + " entered pressure plate");
             onPressurePlatePressed = new OnPressurePlatePressed(id);
             EventBus.Raise(onPressurePlatePressed);
         }

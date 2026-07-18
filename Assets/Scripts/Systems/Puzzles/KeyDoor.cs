@@ -8,7 +8,7 @@ public class KeyDoor : Door
         if (!interactTransform.gameObject.TryGetComponent(out PlayerInventory playerInventory)) 
             return;
         
-        if (playerInventory.GetKeys().Count <= 0) 
+        if (playerInventory.GetKeys().Count <= 0)
             return;
         
         playerInventory.RemoveKey(playerInventory.GetKeys()[0]);

@@ -5,18 +5,15 @@ using UnityEngine;
 public class Chest : BaseInteractable
 {
     private Animator anim;
-    [SerializeField] private bool isLocked = false;
+    [SerializeField] private string knotName;
     [SerializeField] private Drop chestLoot;
     private readonly int Open = Animator.StringToHash("Open");
+    
+    private OnEnterDialogue onEnterDialogue;
 
     private void Awake()
     {
         anim = GetComponent<Animator>();
-    }
-
-    private void Start()
-    {
-        isInteractable = isLocked;
     }
 
     public override void Interact(Transform interactTransform)
@@ -25,7 +22,13 @@ public class Chest : BaseInteractable
         anim.SetTrigger(Open);
         if (chestLoot == null)
             return;
-        
+
+        if (knotName != null)
+        {
+            onEnterDialogue = new OnEnterDialogue(knotName);
+            EventBus.Raise(onEnterDialogue);
+        }
+
         if (chestLoot as UsableDrop)
         {
             UsableDrop drop = (UsableDrop)chestLoot;

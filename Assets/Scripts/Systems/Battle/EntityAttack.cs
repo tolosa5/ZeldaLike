@@ -44,4 +44,9 @@ public class EntityAttack : MonoBehaviour
         isAttacking = false;
         StopAllCoroutines();
     }
+
+    public void ShootArrow()
+    {
+        
+    }
 }

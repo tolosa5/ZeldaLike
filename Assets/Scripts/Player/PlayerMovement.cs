@@ -30,7 +30,7 @@ namespace Game.Player
             if (rb == null || rb.isKinematic)
                 return;
 
-            if (hit.moveDirection.y > -0.3f)
+            if (hit.moveDirection.y < -0.3f)
                 return;
             
             Vector3 forceDirection = hit.gameObject.transform.position - transform.position;
