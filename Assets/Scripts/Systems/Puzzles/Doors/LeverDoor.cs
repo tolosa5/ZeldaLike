@@ -14,7 +14,6 @@ public class LeverDoor : Door
         if (data.id != id)
             return;
         
-        Debug.Log("Lever Open id: " + data.id);
         OpenDoor();
     }
 }

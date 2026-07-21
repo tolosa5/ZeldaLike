@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &6085105826978448536
+--- !u!1 &2072540212484507160
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,48 +8,48 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3869672850863845091}
-  - component: {fileID: 6420339509921267323}
-  - component: {fileID: 4137786274407185929}
-  - component: {fileID: 436131309685187905}
-  - component: {fileID: 6229739978334122481}
-  m_Layer: 6
-  m_Name: Lever
+  - component: {fileID: 5201995496863619466}
+  - component: {fileID: 6113845908964218931}
+  - component: {fileID: 7936394805471631809}
+  - component: {fileID: 5250748105933317821}
+  - component: {fileID: 6344909213644113345}
+  m_Layer: 0
+  m_Name: SwitchDoor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &3869672850863845091
+--- !u!4 &5201995496863619466
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6085105826978448536}
+  m_GameObject: {fileID: 2072540212484507160}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.34, y: 0.5, z: -5.24}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 2.2489, z: 1.8229}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &6420339509921267323
+--- !u!33 &6113845908964218931
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6085105826978448536}
+  m_GameObject: {fileID: 2072540212484507160}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &4137786274407185929
+--- !u!23 &7936394805471631809
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6085105826978448536}
+  m_GameObject: {fileID: 2072540212484507160}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -92,13 +92,13 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &436131309685187905
+--- !u!65 &5250748105933317821
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6085105826978448536}
+  m_GameObject: {fileID: 2072540212484507160}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -113,17 +113,17 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &6229739978334122481
+--- !u!114 &6344909213644113345
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6085105826978448536}
+  m_GameObject: {fileID: 2072540212484507160}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5414dc5dfcd559945a1f4b5e72548204, type: 3}
+  m_Script: {fileID: 11500000, guid: 88b56996ac464c2da46ba56e295b13dd, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Lever
+  m_EditorClassIdentifier: Assembly-CSharp::SwitchDoor
   isInteractable: 1
   id: 0

@@ -26,6 +26,7 @@ namespace Game.Player
         private void Start()
         {
             cameraShakeEffect = new CameraShakeEffect(cameraTransform);
+            
         }
 
         public void Attack()

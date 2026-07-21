@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,6 +14,13 @@ public class EntityAttack : MonoBehaviour
     private Collider[] buffer = new Collider[15];
     private List<IDamageable> alreadyDamaged = new List<IDamageable>();
     
+    [SerializeField] private GameObject arrowPrefab;
+
+    private void Start()
+    {
+        ObjectPooler.SetupPool(arrowPrefab.GetComponent<Arrow>(), 5, "Arrow");
+    }
+
     //Animator call
     public void OpenAttackWindow()
     {
@@ -47,6 +55,8 @@ public class EntityAttack : MonoBehaviour
 
     public void ShootArrow()
     {
-        
+        Arrow instance = ObjectPooler.DequeueObject<Arrow>("Arrow");
+        instance.gameObject.SetActive(true);
+        instance.Initialize(gameObject);
     }
 }

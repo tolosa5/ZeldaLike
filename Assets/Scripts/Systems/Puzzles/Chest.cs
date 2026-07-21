@@ -2,6 +2,16 @@ using System;
 using Game.Player;
 using UnityEngine;
 
+public enum Drops
+{
+    Map,
+    Platinum,
+    Gold,
+    Silver, 
+    Bronze,
+    Key,
+}
+
 public class Chest : BaseInteractable
 {
     private Animator anim;

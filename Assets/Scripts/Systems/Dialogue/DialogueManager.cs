@@ -25,7 +25,7 @@ public class DialogueManager : MonoBehaviour
     {
         EventBus.Subscribe<OnEnterDialogue>(EnterDialogue);
         EventBus.Subscribe<OnUpdateChoiceIndex>(UpdateChoiceIndex);
-        InputManager.instance.inputSystemActions.UI.Submit.performed += _ => ContinueOrExitStory();
+        InputManager.instance.inputSystemActions.UI.Submit.performed += _ => SubmitPressed();
         onDialogueStarted = new OnDialogueStarted();
         onDialogueFinished = new OnDialogueFinished();
         onSwitchPlayerMovement = new OnSwitchPlayerMovement();
