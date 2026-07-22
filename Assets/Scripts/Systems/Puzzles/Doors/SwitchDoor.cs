@@ -6,10 +6,10 @@ public class SwitchDoor : Door
     
     private void Start()
     {
-        EventBus.Subscribe<OnSwitchHit>(SwitchOpen);
+        EventBus.Subscribe<OnSwitchHitEvent>(SwitchOpen);
     }
     
-    private void SwitchOpen(OnSwitchHit data)
+    private void SwitchOpen(OnSwitchHitEvent data)
     {
         if (data.id != id)
             return;

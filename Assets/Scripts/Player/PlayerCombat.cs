@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Game.Player
 {
-    public class PlayerCombat : MonoBehaviour, IDamageable
+    public class PlayerCombat : MonoBehaviour
     {
         [SerializeField] private Animator anim;
         public Animator Anim => anim;
@@ -16,7 +16,6 @@ namespace Game.Player
         [SerializeField] private Transform cameraTransform;
         
         private readonly int Attack1 = Animator.StringToHash("Attack");
-        private readonly int GetHit = Animator.StringToHash("GetHit");
 
         private void Awake()
         {
@@ -26,24 +25,12 @@ namespace Game.Player
         private void Start()
         {
             cameraShakeEffect = new CameraShakeEffect(cameraTransform);
-            
         }
 
         public void Attack()
         {
             anim.SetTrigger(Attack1);
             PlayParticles(slashEffect);
-        }
-
-        public void HandleHit(GameObject source, float damage)
-        {
-            if (!anim) 
-                return;
-            
-            StopAllCoroutines();
-            PlayFeedback();
-            //PlayParticles();
-            anim.SetTrigger(GetHit);
         }
 
         private void PlayParticles(ParticleSystem particles)

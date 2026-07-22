@@ -11,10 +11,10 @@ public class DialogueManager : MonoBehaviour
     private int currentChoiceIndex = -1;
     private bool isDialoguePlaying = false;
     
-    private OnSwitchPlayerMovement onSwitchPlayerMovement;
-    private OnDialogueStarted onDialogueStarted;
-    private OnDialogueFinished onDialogueFinished;
-    private OnDialogueDisplay onDialogueDisplay;
+    private OnSwitchPlayerMovementEvent onSwitchPlayerMovementEvent;
+    private OnDialogueStartedEvent onDialogueStartedEvent;
+    private OnDialogueFinishedEvent onDialogueFinishedEvent;
+    private OnDialogueDisplayEvent onDialogueDisplayEvent;
 
     private void Awake()
     {
@@ -23,12 +23,12 @@ public class DialogueManager : MonoBehaviour
 
     private void Start()
     {
-        EventBus.Subscribe<OnEnterDialogue>(EnterDialogue);
-        EventBus.Subscribe<OnUpdateChoiceIndex>(UpdateChoiceIndex);
+        EventBus.Subscribe<OnEnterDialogueEvent>(EnterDialogue);
+        EventBus.Subscribe<OnUpdateChoiceIndexEvent>(UpdateChoiceIndex);
         InputManager.instance.inputSystemActions.UI.Submit.performed += _ => SubmitPressed();
-        onDialogueStarted = new OnDialogueStarted();
-        onDialogueFinished = new OnDialogueFinished();
-        onSwitchPlayerMovement = new OnSwitchPlayerMovement();
+        onDialogueStartedEvent = new OnDialogueStartedEvent();
+        onDialogueFinishedEvent = new OnDialogueFinishedEvent();
+        onSwitchPlayerMovementEvent = new OnSwitchPlayerMovementEvent();
     }
 
     private void SubmitPressed()
@@ -39,13 +39,13 @@ public class DialogueManager : MonoBehaviour
         ContinueOrExitStory();
     }
 
-    private void EnterDialogue(OnEnterDialogue data)
+    private void EnterDialogue(OnEnterDialogueEvent data)
     {
         if (isDialoguePlaying)
             return;
         
-        EventBus.Raise(onSwitchPlayerMovement);
-        EventBus.Raise(onDialogueStarted);
+        EventBus.Raise(onSwitchPlayerMovementEvent);
+        EventBus.Raise(onDialogueStartedEvent);
         
         isDialoguePlaying = true;
         
@@ -78,15 +78,15 @@ public class DialogueManager : MonoBehaviour
             }
             else
             {
-                onDialogueDisplay = new OnDialogueDisplay(dialogueLine, story.currentChoices);
-                EventBus.Raise(onDialogueDisplay);
+                onDialogueDisplayEvent = new OnDialogueDisplayEvent(dialogueLine, story.currentChoices);
+                EventBus.Raise(onDialogueDisplayEvent);
             }
         }
         else if (story.currentChoices.Count == 0) 
             ExitDialogue();
     }
 
-    private void UpdateChoiceIndex(OnUpdateChoiceIndex data)
+    private void UpdateChoiceIndex(OnUpdateChoiceIndexEvent data)
     {
         currentChoiceIndex = data.choiceIndex;
     }
@@ -95,8 +95,8 @@ public class DialogueManager : MonoBehaviour
     {
         isDialoguePlaying = false;
         story.ResetState();
-        EventBus.Raise(onSwitchPlayerMovement);
-        EventBus.Raise(onDialogueFinished);
+        EventBus.Raise(onSwitchPlayerMovementEvent);
+        EventBus.Raise(onDialogueFinishedEvent);
     }
     
     private bool IsLineBlank(string line)

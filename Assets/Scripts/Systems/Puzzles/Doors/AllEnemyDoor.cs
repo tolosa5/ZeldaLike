@@ -6,10 +6,10 @@ public class AllEnemyDoor : Door
     
     private void Start()
     {
-        EventBus.Subscribe<OnEnemiesDefeatedEvent>(EnemyOpen);
+        EventBus.Subscribe<OnEnemiesZoneClearedEvent>(EnemyOpen);
     }
     
-    private void EnemyOpen(OnEnemiesDefeatedEvent data)
+    private void EnemyOpen(OnEnemiesZoneClearedEvent data)
     {
         if (data.id != id)
             return;

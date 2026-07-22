@@ -17,7 +17,7 @@ namespace Game.Player
             InputManager.instance.inputSystemActions.Player.Interact.performed += ctx => playerInteraction.LookForInteraction();
             InputManager.instance.inputSystemActions.Player.Bow.performed += ctx => playerCombat.entityAttack.ShootArrow();
             
-            EventBus.Subscribe<OnSwitchPlayerMovement>(SwitchPlayerMovement);
+            EventBus.Subscribe<OnSwitchPlayerMovementEvent>(SwitchPlayerMovement);
         }
 
         private void Update()
@@ -31,7 +31,7 @@ namespace Game.Player
             playerMovement.Move(movementInput);
         }
 
-        private void SwitchPlayerMovement(OnSwitchPlayerMovement data)
+        private void SwitchPlayerMovement(OnSwitchPlayerMovementEvent data)
         {
             isMovementEnabled = !isMovementEnabled;
         }

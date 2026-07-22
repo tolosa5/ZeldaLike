@@ -19,7 +19,7 @@ public class Chest : BaseInteractable
     [SerializeField] private Drop chestLoot;
     private readonly int Open = Animator.StringToHash("Open");
     
-    private OnEnterDialogue onEnterDialogue;
+    private OnEnterDialogueEvent onEnterDialogueEvent;
 
     private void Awake()
     {
@@ -35,8 +35,8 @@ public class Chest : BaseInteractable
 
         if (knotName != null)
         {
-            onEnterDialogue = new OnEnterDialogue(knotName);
-            EventBus.Raise(onEnterDialogue);
+            onEnterDialogueEvent = new OnEnterDialogueEvent(knotName);
+            EventBus.Raise(onEnterDialogueEvent);
         }
 
         if (chestLoot as UsableDrop)

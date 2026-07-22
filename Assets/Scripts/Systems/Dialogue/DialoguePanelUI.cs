@@ -10,7 +10,7 @@ public class DialoguePanelUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI dialogueText;
     [SerializeField] private DialogueChoiceButton[] choiceButtons;
     
-    private OnUpdateChoiceIndex onUpdateChoiceIndex;
+    private OnUpdateChoiceIndexEvent onUpdateChoiceIndexEvent;
 
     private void Awake()
     {
@@ -20,22 +20,22 @@ public class DialoguePanelUI : MonoBehaviour
 
     private void Start()
     {
-        EventBus.Subscribe<OnDialogueStarted>(DialogueStarted);
-        EventBus.Subscribe<OnDialogueFinished>(DialogueEnded);
-        EventBus.Subscribe<OnDialogueDisplay>(DisplayDialogue);
+        EventBus.Subscribe<OnDialogueStartedEvent>(DialogueStarted);
+        EventBus.Subscribe<OnDialogueFinishedEvent>(DialogueEnded);
+        EventBus.Subscribe<OnDialogueDisplayEvent>(DisplayDialogue);
     }
 
-    private void DialogueStarted(OnDialogueStarted data)
+    private void DialogueStarted(OnDialogueStartedEvent data)
     {
         contentPanel.SetActive(true);
     }
 
-    private void DialogueEnded(OnDialogueFinished data)
+    private void DialogueEnded(OnDialogueFinishedEvent data)
     {
         contentPanel.SetActive(false);
     }
 
-    private void DisplayDialogue(OnDialogueDisplay data)
+    private void DisplayDialogue(OnDialogueDisplayEvent data)
     {
         dialogueText.text = data.dialogueLine;
         if (data.choices.Count > choiceButtons.Length)
@@ -58,8 +58,8 @@ public class DialoguePanelUI : MonoBehaviour
             if (i == 0)
             {
                 choiceButton.SelectButton();
-                onUpdateChoiceIndex = new OnUpdateChoiceIndex(0);
-                EventBus.Raise(onUpdateChoiceIndex);
+                onUpdateChoiceIndexEvent = new OnUpdateChoiceIndexEvent(0);
+                EventBus.Raise(onUpdateChoiceIndexEvent);
             }
 
             choiceButtonIndex--;
@@ -73,8 +73,8 @@ public class DialoguePanelUI : MonoBehaviour
 
     private void OnDisable()
     {
-        EventBus.Unsubscribe<OnDialogueStarted>(DialogueStarted);
-        EventBus.Unsubscribe<OnDialogueFinished>(DialogueEnded);
-        EventBus.Unsubscribe<OnDialogueDisplay>(DisplayDialogue);
+        EventBus.Unsubscribe<OnDialogueStartedEvent>(DialogueStarted);
+        EventBus.Unsubscribe<OnDialogueFinishedEvent>(DialogueEnded);
+        EventBus.Unsubscribe<OnDialogueDisplayEvent>(DisplayDialogue);
     }
 }

@@ -9,7 +9,7 @@ public class DialogueChoiceButton : MonoBehaviour, ISelectHandler
     [SerializeField] private Button button;
     [SerializeField] private TextMeshProUGUI choiceText;
     
-    private OnUpdateChoiceIndex onUpdateChoiceIndex;
+    private OnUpdateChoiceIndexEvent onUpdateChoiceIndexEvent;
 
     private int choiceIndex = -1;
 
@@ -30,7 +30,7 @@ public class DialogueChoiceButton : MonoBehaviour, ISelectHandler
 
     public void OnSelect(BaseEventData eventData)
     {
-        onUpdateChoiceIndex = new OnUpdateChoiceIndex(choiceIndex);
-        EventBus.Raise(onUpdateChoiceIndex);
+        onUpdateChoiceIndexEvent = new OnUpdateChoiceIndexEvent(choiceIndex);
+        EventBus.Raise(onUpdateChoiceIndexEvent);
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 public class HitteableSwitch : MonoBehaviour, IDamageable
 {
     [SerializeField] private int id;
-    private OnSwitchHit onSwitchHit;
+    private OnSwitchHitEvent onSwitchHitEvent;
     
     public void HandleHit(GameObject source, float damage)
     {
@@ -12,7 +12,7 @@ public class HitteableSwitch : MonoBehaviour, IDamageable
         
         if (!source.TryGetComponent(out PlayerCombat playerCombat)) 
             return;
-        onSwitchHit = new OnSwitchHit(id);
-        EventBus.Raise(onSwitchHit);
+        onSwitchHitEvent = new OnSwitchHitEvent(id);
+        EventBus.Raise(onSwitchHitEvent);
     }
 }

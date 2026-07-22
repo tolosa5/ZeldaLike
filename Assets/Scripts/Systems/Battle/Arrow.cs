@@ -15,7 +15,7 @@ public class Arrow : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         if (TryGetComponent(out IDamageable damageable))
-            damageable.HandleHit(gameObject, 10f);
+            damageable.HandleHit(gameObject, 2f);
     }
 
     private void Update()

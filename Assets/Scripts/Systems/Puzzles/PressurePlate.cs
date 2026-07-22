@@ -5,7 +5,7 @@ public class PressurePlate : MonoBehaviour
     [SerializeField] private GameObject visualPlate;
     [SerializeField] private int id;
     
-    private OnPressurePlatePressed onPressurePlatePressed;
+    private OnPressurePlatePressedEvent onPressurePlatePressedEvent;
     
     private void OnTriggerEnter(Collider other)
     {
@@ -13,8 +13,8 @@ public class PressurePlate : MonoBehaviour
         {
             rock.LockPosition();
             Debug.Log(rock.gameObject.name + " entered pressure plate");
-            onPressurePlatePressed = new OnPressurePlatePressed(id);
-            EventBus.Raise(onPressurePlatePressed);
+            onPressurePlatePressedEvent = new OnPressurePlatePressedEvent(id);
+            EventBus.Raise(onPressurePlatePressedEvent);
         }
     }
 }

@@ -5,3 +5,9 @@ public class Key : Drop
 {
     
 }
+
+[CreateAssetMenu(fileName = "BossKey", menuName = "Scriptable Objects/Drop/BossKey")]
+public class BossKey : Drop
+{
+    
+}
